@@ -246,7 +246,9 @@ To import your design
 	- Make sure you select LEF Files and not OA
 - Power
 	- Power Nets: VDD
-	- Ground Nets: Vss
+	- Ground Nets: VSS
+
+
 From there you should be good to click OK
 ### Configuration
 First, we need to set our design mode. Because we are using a 45 nanometer PDK
