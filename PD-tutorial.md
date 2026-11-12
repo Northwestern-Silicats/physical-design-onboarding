@@ -181,7 +181,7 @@ module my_module(something_i, something_o, VDD, VSS);
 
 Note that there are other ways to do power and ground definition, but this is what we'll go with for now.
 ### View file
-Before we go any further, we're going to need to make a view file. This is a multi-mode multi-corner file that specifies a lot of testing-related things, specifically related to testing under different operational states and physical conditions (as chip timing depends on many factors such as voltage supplied and temperature). MMMC means we test against multiple of these factors at the same time. In this file we create RC corners which define multipliers that degrade chip performance by modifying the resistance and capacitance of extracted parasitics. We also define operating conditions which specify process (manufacturing variation which affects switching speed), voltage, and termperature which all affect chip performance.
+Before we go any further, we're going to need to make a view file. This is a multi-mode multi-corner file that specifies a lot of testing-related things, specifically related to testing under different operational states and physical conditions (as chip timing depends on many factors such as voltage supplied and temperature). MMMC means we test against multiple of these factors at the same time. In this file we create RC corners which define multipliers that degrade chip performance by modifying the resistance and capacitance of extracted parasitics. We also define operating conditions which specify process (manufacturing variation which affects switching speed), voltage, and termperature which all affect chip performance. We'll name ours `median_filter.view`
 ```tcl
 # Version:1.0 MMMC View Definition File
 # Do Not Remove Above Line
@@ -247,6 +247,7 @@ To import your design
 - Power
 	- Power Nets: VDD
 	- Ground Nets: VSS
+ - Set the MMMC view file to the view file we just created
 
 
 From there you should be good to click OK
