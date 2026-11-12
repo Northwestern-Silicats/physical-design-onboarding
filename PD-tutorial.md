@@ -311,6 +311,7 @@ Now, let's edit our pin locations in the GUI
 	- Spacing 0.42 micron
 	- Use: SIGNAL
 - Power and ground pins allocated on top and bottom (M4 layer)
+	- Location: Spread (Type: From Center)
 	- Spacing 0.28
 Be sure to check your terminal for error messages. You may see some errors regarding negative values being deprecated. In which case, set the Start to end Direction to the opposite of whatever it was (usually this means setting it to Counterclockwise)
 
