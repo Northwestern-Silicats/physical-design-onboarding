@@ -1,0 +1,14 @@
+# --- Cadence Base Tools Libraries (Updated to match IC618 from your env) ---
+DEFINE analogLib         /vol/cadence2018/IC618/tools/dfII/etc/cdslib/artist/analogLib
+DEFINE US_8ths           /vol/cadence2018/IC618/tools/dfII/etc/cdslib/sheets/US_8ths
+DEFINE basic             /vol/cadence2018/IC618/tools/dfII/etc/cdslib/basic
+DEFINE cdsDefTechLib     /vol/cadence2018/IC618/tools/dfII/etc/cdsDefTechLib
+
+# --- FreePDK45 Libraries ---
+DEFINE NCSU_TechLib_FreePDK45  /vol/eecs391/FreePDK45/ncsu_basekit/lib/NCSU_TechLib_FreePDK45
+DEFINE NCSU_Devices_FreePDK45  /vol/eecs391/FreePDK45/ncsu_basekit/lib/NCSU_Devices_FreePDK45
+
+# --- Sky130 PDK Libraries (Updated to match exact folder names) ---
+DEFINE sky130_release    /vol/eecs391/SKY130_PDK/sky130_release_0.1.0
+DEFINE sky130_scl_9T     /vol/eecs391/SKY130_PDK/sky130_scl_9T_0.1.2
+
