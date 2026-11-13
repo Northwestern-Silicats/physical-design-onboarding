@@ -581,7 +581,7 @@ setNanoRouteMode -quiet -routeTopRoutingLayer 5
 routeDesign -globalDetail
 ```
 
-Optimize one last time
+Optimize one last time (note that if you see any negative slack, you should rerun the `optDesign` until the total negative slack is 0)
 ```tcl
 # delete our filler cells
 deleteFiller -prefix FILLER
