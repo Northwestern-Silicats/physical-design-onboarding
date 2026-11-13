@@ -275,7 +275,7 @@ From here, it's time to actually do the floorplanning
 # create a floorplan
 # floorPlan -r <aspect_ratio> <core_utilization> <left> <bottom> <right> <top>
 # aspect_ratio: height/width -> 1.0 is square
-# core_utilization: ratio of total standard cell area to core area, leave room
+# core_utilization: ratio of total standard cell area to core area, leave room (IF YOU ARE FLOORPLANNING THE COUNTER SET TO 0.25!!!!)
 # for routing + congestion
 # left, bottom, right, top: core-to-die spacing margins (X micron margin on all
 # four sides of the core boundary and the die boundary)
