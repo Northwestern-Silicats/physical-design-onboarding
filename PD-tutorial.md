@@ -302,13 +302,13 @@ Now, let's edit our pin locations in the GUI
 	- Side/Edge: Right,
 	- Layer M3 layer
 	- Spread: from Center,
-	- Spacing: 0.56 micron
+	- Spacing: 2 micron
 	- Use: SIGNAL
 - Ex. allocate input signals by setting
 	- Side/Edge: Left
 	- Layer M3 layer,
 	- Spread: from Center
-	- Spacing 0.42 micron
+	- Spacing 2 micron
 	- Use: SIGNAL
 - Power and ground pins allocated on top and bottom (M4 layer)
 	- Location: Spread (Type: From Center)
