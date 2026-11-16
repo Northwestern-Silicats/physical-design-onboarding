@@ -53,7 +53,7 @@ set_output_delay -min -0.2 -clock clk [all_outputs]
 
 # model input and load capacitances
 # note that we're working in picofarads, so we're in femtofarads now
-set_max_capacitance 0.010 [all_inputs]
+set_max_capacitance 10 [all_inputs]
 set_load 0.050 [all_outputs]
 
 # set max transition at output ports
