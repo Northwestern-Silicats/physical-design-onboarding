@@ -280,7 +280,7 @@ From here, it's time to actually do the floorplanning
 # left, bottom, right, top: core-to-die spacing margins (X micron margin on all
 # four sides of the core boundary and the die boundary)
 # this is used for power rings, I/O rows, etc
-floorPlan -r 1.0 0.62 2 2 2 2
+floorPlan -r 1.0 0.50 2 2 2 2
 
 # sets the active cursor/interaction mode in Innovus to the select tool
 # "click to select"
