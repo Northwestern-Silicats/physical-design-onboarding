@@ -1,0 +1,48 @@
+# Version:1.0 MMMC View Definition File
+# Do Not Remove Above Line
+
+# Define an RC corner named rc
+# -preRoute_res specifies the resistance multiplier used in wire-load based
+# estimates before routing exists
+# -preRoute_cap is the same thing, but for capacitance
+# -preRoute_clkres is also the same thing, but specifically for the clock nets
+# -preRoute_clkcap should be obvious
+# -postRoute_res is the multiplier appllied to extracted resistance after routing
+# -postRoute_cap is the same thing, but for capacitance
+# -postRoute_xcap is for coupling/cross capacitance
+# -postRoute_clkres should hopefully be obvious
+# -postRoute_clkcap should also hopefully be obvious
+create_rc_corner -name rc -preRoute_res {1.0} -preRoute_cap {1.0} -preRoute_clkres {0.0} -preRoute_clkcap {0.0} -postRoute_res {1.0} -postRoute_cap {1.0} -postRoute_xcap {1.0} -postRoute_clkres {0.0} -postRoute_clkcap {0.0}
+
+# Define an operating condition named op
+# -library_file specifies our cell library
+# -P specifies process, currently scaling factor of 1.0
+# -V specifies voltage, currently 1.1 volts
+# -T specifies temperature, currently 25 degrees C
+create_op_cond -name op -library_file {/vol/ece303/genus_tutorial/NangateOpenCellLibrary_typical.lib} -P {1.0} -V {1.1} -T {25.0}
+
+# Define a library set named lib
+# -timing specifies the timing file that our cells will be characterized against
+create_library_set -name lib -timing {/vol/ece303/genus_tutorial/NangateOpenCellLibrary_typical.lib}
+
+# Define a constraint mode named sdc
+# -sdc_files does exactly what the name implies
+create_constraint_mode -name sdc -sdc_files {../Frontend/median_filter.sdc}
+
+# Define a delay corner named de
+# this combines the multipliers defined in the rc corner with our cell library
+# the flags that we are passing here should be intuitive
+# add op
+create_delay_corner -name de -library_set {lib} -rc_corner {rc}
+
+# Define an analysis view named an
+# this bundles our delay corner (giving us worst case scenarios)
+# with our design constraints
+# again, flags here shouldn't need an explanation
+create_analysis_view -name an -constraint_mode {sdc} -delay_corner {de}
+
+# Set our analysis vidw to an for both setup and hold
+set_analysis_view -setup {an} -hold {an}
+
+# Set our operating conditions
+set_operating_conditions -library_set lib -condition op
