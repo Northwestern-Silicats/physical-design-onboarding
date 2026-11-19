@@ -42,7 +42,7 @@ source cadence.env
 ```
 This will give you access to all of the Cadence tools that we will need from here on out.
 ### Sdc file
-Before we do any actual synthesis, we're going to want to define some constraints on our module. This is what a Synopsys design constraints (sdc) file is for. Let's write a basic one together. Create a file called `median_filter.sdc` in the `frontend` directory and fill it out like we see below
+Before we do any actual synthesis, we're going to want to define some constraints on our module. This is what a Synopsys design constraints (sdc) file is for. Let's write a basic one together. Create a file called `median_filter.sdc` in the `Frontend` directory and fill it out like we see below
 ```tcl
 # set our time unit
 # by default it's 1ns so you technically don't need it, but we'll leave it
