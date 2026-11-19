@@ -491,13 +491,15 @@ set_ccopt_property -cts_def_lock_clock_sinks_after_routing true
 # are placed/fixedlater optimization passes shouldn't move them
 setOptMode -unfixClkInstForOpt false
 
-# generate a clock tree specification file based on the current design's clock
+# generate a clock tree specification based on the current design's clock
 # definitions (from our sdc file) and CCOpt's analysis of the clock network
 # structure
 # this describes how CCOpt should build the tree (buffering strategy, target
 # skew groups, clock structure) and can be inspected/edited before the actual
 # build if needed
-create_ccopt_clock_tree_spec -file clk_gen.ccopt
+# note you can append -file clk_gen.ccopt
+# to output this to a file
+create_ccopt_clock_tree_spec
 
 # send it :)
 ccopt_design
