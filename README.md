@@ -1,16 +1,37 @@
 # Silicats Physical Design Onboarding
-This is going to be an example of how to do a full synthesis-layout flow
 # Preparation
 ### Directory layout
-Organize your stuff so that you have what looks like this
+By default, we have this directory structure
 ```
 .
-├── Backend/
 ├── cadence.env
+├── counter_8_bit/
+│   ├── Backend/
+│   └── Frontend/
+│       ├── counter_8_bit.sdc
+│       ├── counter_8_bit.sv
+│       └── Synthesis/
+├── median_filter/
+│   ├── Backend/
+│   │   ├── median_filter_syn.v
+│   │   └── median_pixel_filter.view
+│   └── Frontend/
+│       ├── median_pixel_filter.sdc
+│       └── Synthesis/
+│           └── median_filter_syn.v
+└── README.md
+```
+If we want to synthesize and then layout our median pixel filter, we need to rearrange the `median_filter/`
+directory as follows. (get rid of the `_syn` files).
+```
+./median_filter/
+├── Backend/
+│   └── median_pixel_filter.view
 └── Frontend/
     ├── median_filter_v2.sv
     ├── median_kernel_calc.sv
     ├── pixel_pkg.sv
+    ├── median_pixel_filter.sdc
     └── Synthesis/
 ```
 Where `.` is your present working directory. Note that everything with a `/` after it is a directory.
