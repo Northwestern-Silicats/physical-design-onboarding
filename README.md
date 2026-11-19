@@ -646,7 +646,7 @@ timeDesign -postRoute -hold -pathReports -slackReports -numPaths 400 -prefix <my
 saveDesign <my_module>_final_layout.enc
 ```
 
-If we pass everything (because we're goated)
+If we pass everything
 ```tcl
 # save physical netlist (includes physical-only cells like our fillers)
 # -phys: see line above
