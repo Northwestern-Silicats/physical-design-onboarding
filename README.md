@@ -1,5 +1,22 @@
 # Silicats Physical Design Onboarding
 # Preparation
+Make sure you have access to the Wilkinson servers. Links to information:
+- http://it.eecs.northwestern.edu/info/2015/11/03/info-labs.html
+- http://it.eecs.northwestern.edu/info/2020/09/14/info-labs-fastx.html
+
+NOTE: currently, only `moore`, `brooks`, `finagle`, and `hanlon` are working. Blame IT. To access any one of the servers via FastX, go to any of these links in your browser (which takes you to port 3300 of the machine) and then log in with your netID and password. You may want to also fullscreen your browser as some of the GUI windows may not fit on your screen otherwise.
+
+- https://moore.wot.eecs.northwestern.edu:3300
+- https://brooks.wot.eecs.northwestern.edu:3300
+- https://finagle.wot.eecs.northwestern.edu:3300
+- https://hanlon.wot.eecs.northwestern.edu:3300
+
+
+You could use the FastX app (https://www.starnet.com/download-fastx-client/) instead of the browser. Or maybe even use ssh with X11 forwarding which has the added benefit of giving you native-looking windows that may or may not play nice with your desktop environment's window manager. Note that doing this on a Mac requires that you have XQuartz (https://www.xquartz.org/) installed and open.
+```
+ssh -X NETID@SERVER
+```
+
 ### Directory layout
 By default, we have this directory structure
 ```
