@@ -4,6 +4,7 @@ Make sure you have access to the Wilkinson servers. Links to information:
 - http://it.eecs.northwestern.edu/info/2015/11/03/info-labs.html
 - http://it.eecs.northwestern.edu/info/2020/09/14/info-labs-fastx.html
 
+> [!NOTE]
 NOTE: currently, only `moore`, `brooks`, `finagle`, and `hanlon` are working. Blame IT. To access any one of the servers via FastX, go to any of these links in your browser (which takes you to port 3300 of the machine) and then log in with your netID and password. You may want to also fullscreen your browser as some of the GUI windows may not fit on your screen otherwise.
 
 - https://moore.wot.eecs.northwestern.edu:3300
