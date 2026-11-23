@@ -14,9 +14,9 @@ By default, we have this directory structure
 ├── median_filter/
 │   ├── Backend/
 │   │   ├── median_filter_syn.v
-│   │   └── median_pixel_filter.view
+│   │   └── median_filter.view
 │   └── Frontend/
-│       ├── median_pixel_filter.sdc
+│       ├── median_filter.sdc
 │       └── Synthesis/
 │           └── median_filter_syn.v
 └── README.md
@@ -26,12 +26,12 @@ directory as follows. (get rid of the `_syn` files).
 ```
 ./median_filter/
 ├── Backend/
-│   └── median_pixel_filter.view
+│   └── median_filter.view
 └── Frontend/
     ├── median_filter_v2.sv
     ├── median_kernel_calc.sv
     ├── pixel_pkg.sv
-    ├── median_pixel_filter.sdc
+    ├── median_filter.sdc
     └── Synthesis/
 ```
 Where `.` is your present working directory. Note that everything with a `/` after it is a directory.
@@ -204,7 +204,7 @@ module my_module(something_i, something_o, VDD, VSS);
 
 Note that there are other ways to do power and ground definition, but this is what we'll go with for now.
 ### View file
-Before we go any further, we're going to need to make a view file. This is a multi-mode multi-corner file that specifies a lot of testing-related things, specifically related to testing under different operational states and physical conditions (as chip timing depends on many factors such as voltage supplied and temperature). MMMC means we test against multiple of these factors at the same time. In this file we create RC corners which define multipliers that degrade chip performance by modifying the resistance and capacitance of extracted parasitics. We also define operating conditions which specify process (manufacturing variation which affects switching speed), voltage, and termperature which all affect chip performance. We'll name ours `median_filter.view`
+Before we go any further, we're going to need to make a view file. This is a multi-mode multi-corner file that specifies a lot of testing-related things, specifically related to testing under different operational states and physical conditions (as chip timing depends on many factors such as voltage supplied and temperature). MMMC means we test against multiple of these factors at the same time. In this file we create RC corners which define multipliers that degrade chip performance by modifying the resistance and capacitance of extracted parasitics. We also define operating conditions which specify process (manufacturing variation which affects switching speed), voltage, and temperature which all affect chip performance. We'll name ours `median_filter.view`
 ```tcl
 # Version:1.0 MMMC View Definition File
 # Do Not Remove Above Line
@@ -272,8 +272,17 @@ To import your design
 	- Ground Nets: VSS
  - Set the MMMC view file to the view file we just created
 
+Your dialog window should look like this
+![DesignImport](./images/design_import.png)
 
 From there you should be good to click OK
+
+If you are resuming from a previous session
+- File -> Restore Design
+- Restore Design File: SOMETHING.enc
+	- the enc file is the output that you get whenever you run `saveDesign`
+
+![DesignRestore](./images/design_restore.png)
 ### Configuration
 First, we need to set our design mode. Because we are using a 45 nanometer PDK
 ```tcl
@@ -322,21 +331,22 @@ globalNetConnect VSS -type tielo
 Now, let's edit our pin locations in the GUI
 - Edit -> Pin Editor
 - Ex. allocate output signal by setting
-	- Side/Edge: Right,
+	- Spread: from Center (SET THIS FIRST)
+	- Side/Edge: Right
 	- Layer M3 layer
-	- Spread: from Center,
-	- Spacing: 2 micron
+	- Spacing: 20 micron (it might change your number a bit, just make sure that the pins are actually well spaced out in the final design. You could also just pick a different number, so long as your pins aren't excessively bunched up)
 	- Use: SIGNAL
-- Ex. allocate input signals by setting
+- Ex. allocate input signals (including clock and reset) by setting
+	- Spread: from Center
 	- Side/Edge: Left
 	- Layer M3 layer,
-	- Spread: from Center
-	- Spacing 2 micron
+	- Spacing 20 micron (same as before)
 	- Use: SIGNAL
 - Power and ground pins allocated on top and bottom (M4 layer)
 	- Location: Spread (Type: From Center)
-	- Spacing 0.28
-Be sure to check your terminal for error messages. You may see some errors regarding negative values being deprecated. In which case, set the Start to end Direction to the opposite of whatever it was (usually this means setting it to Counterclockwise)
+	- Spacing: Doesn't really matter, just leave at default
+Your window should look something like this when doing your input pins
+![PinAssignment](./images/pin_assignment.png)
 
 With our floorplan now done, let's save our design
 ```tcl
@@ -504,16 +514,33 @@ create_ccopt_clock_tree_spec
 # send it :)
 ccopt_design
 ```
+NOTE: THIS IS OPTIONAL AND TAKES A MINUTE TO LOAD SO SKIP IT IF YOU ARE SHORT ON TIME
 
-Now open the Clock Browser from the GUI.  Click OK and you will see a window with the generated clock tree in the design. From here, let's do some checking, optimizing, and then save our work
+
+Now open the Clock Browser from the GUI. (Clock->CCopt Clock Tree Debugger) Click OK on the next popup window and you will see a window with the generated clock tree in the design.
+![ClockTree](./images/clock_tree.png)
+
+BACK TO THINGS WE ACTUALLY NEED TO DO
+
+From here, let's do some checking, optimizing, and then save our work
 ```
-checkPlace alu.checkPlace
+# Outputs a file called mpf.checkPlace that details any placement violations we might have
+checkPlace mpf.checkPlace
+
+# Run timing, this time post clock tree synthesis
 timeDesign -postCTS -numPaths 200
+# Same thing for hold
 timeDesign -postCTS -hold -numPaths 200
+
+# Optimization pass
 optDesign -postCTS -numPaths 200
 optDesign -postCTS -hold -numPaths 200
+
+# Re-time. Note: optional
 timeDesign -postCTS -hold -numPaths 200
 timeDesgn -postCTS -numPaths 200
+
+# Save your work
 saveDesign <my_module>_clk.enc
 ```
 ### Routing
