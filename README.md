@@ -84,6 +84,9 @@ set_max_transition 10.0 [current_design]
 ```
 It should be noted that this file is EXTREMELY generous and realistically, we'll be dealing with smaller values on actual projects. We might come back and mess around with this sdc file later
 # Synthesis
+
+SKIP TO PHYSICAL DESIGN IF YOU ARE SHORT ON TIME. GENUS RUNS ON MEDIAN PIXEL FILTER WILL TAKE YOU 1 HOUR MINIMUM. WE HAVE PROVIDED A PRESYNTHESIZED VERSION OF YOUR FILTER HERE. IF YOU DO TAKE THIS STEP, CLEAR OUT THE SYNTHESIS FOLDER. IF YOU DO WANT TO SYNTHESIZE SOMETHING, DO THE 8-BIT COUNTER
+
 ### Start genus
 `cd` into `Synthesis` and then start genus
 ```
