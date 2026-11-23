@@ -5,12 +5,11 @@ Make sure you have access to the Wilkinson servers. Links to information:
 - http://it.eecs.northwestern.edu/info/2020/09/14/info-labs-fastx.html
 
 > [!NOTE]
-NOTE: currently, only `moore`, `brooks`, `finagle`, and `hanlon` are working. Blame IT. To access any one of the servers via FastX, go to any of these links in your browser (which takes you to port 3300 of the machine) and then log in with your netID and password. You may want to also fullscreen your browser as some of the GUI windows may not fit on your screen otherwise.
-
-- https://moore.wot.eecs.northwestern.edu:3300
-- https://brooks.wot.eecs.northwestern.edu:3300
-- https://finagle.wot.eecs.northwestern.edu:3300
-- https://hanlon.wot.eecs.northwestern.edu:3300
+>NOTE: currently, only `moore`, `brooks`, `finagle`, and `hanlon` are working. Blame IT. To access any one of the servers via FastX, go to any of these links in your browser (which takes you to port 3300 of the machine) and then log in with your netID and password. You may want to also fullscreen your browser as some of the GUI windows may not fit on your screen otherwise.
+>- https://moore.wot.eecs.northwestern.edu:3300
+>- https://brooks.wot.eecs.northwestern.edu:3300
+>- https://finagle.wot.eecs.northwestern.edu:3300
+>- https://hanlon.wot.eecs.northwestern.edu:3300
 
 
 You could use the FastX app (https://www.starnet.com/download-fastx-client/) instead of the browser. Or maybe even use ssh with X11 forwarding which has the added benefit of giving you native-looking windows that may or may not play nice with your desktop environment's window manager. Note that doing this on a Mac requires that you have XQuartz (https://www.xquartz.org/) installed and open.
@@ -103,7 +102,8 @@ set_max_transition 10.0 [current_design]
 It should be noted that this file is EXTREMELY generous and realistically, we'll be dealing with smaller values on actual projects. We might come back and mess around with this sdc file later
 # Synthesis
 
-SKIP TO PHYSICAL DESIGN IF YOU ARE SHORT ON TIME. GENUS RUNS ON MEDIAN PIXEL FILTER WILL TAKE YOU 1 HOUR MINIMUM. WE HAVE PROVIDED A PRESYNTHESIZED VERSION OF YOUR FILTER HERE. IF YOU DO TAKE THIS STEP, CLEAR OUT THE SYNTHESIS FOLDER. IF YOU DO WANT TO SYNTHESIZE SOMETHING, DO THE 8-BIT COUNTER
+>[!IMPORTANT]
+>SKIP TO PHYSICAL DESIGN IF YOU ARE SHORT ON TIME. GENUS RUNS ON MEDIAN PIXEL FILTER WILL TAKE YOU 1 HOUR MINIMUM. WE HAVE PROVIDED A PRESYNTHESIZED VERSION OF YOUR FILTER HERE. IF YOU DO TAKE THIS STEP, CLEAR OUT THE SYNTHESIS FOLDER. IF YOU DO WANT TO SYNTHESIZE SOMETHING, DO THE 8-BIT COUNTER
 
 ### Start genus
 `cd` into `Synthesis` and then start genus
@@ -535,13 +535,13 @@ create_ccopt_clock_tree_spec
 # send it :)
 ccopt_design
 ```
-NOTE: THIS IS OPTIONAL AND TAKES A MINUTE TO LOAD SO SKIP IT IF YOU ARE SHORT ON TIME
+>[!IMPORTANT]
+>NOTE: THIS IS OPTIONAL AND TAKES A MINUTE TO LOAD SO SKIP IT IF YOU ARE SHORT ON TIME
+>
+>
+>Now open the Clock Browser from the GUI. (Clock->CCopt Clock Tree Debugger) Click OK on the next popup window and you will see a window with the generated clock tree in the design.
+>![ClockTree](./images/clock_tree.png)
 
-
-Now open the Clock Browser from the GUI. (Clock->CCopt Clock Tree Debugger) Click OK on the next popup window and you will see a window with the generated clock tree in the design.
-![ClockTree](./images/clock_tree.png)
-
-BACK TO THINGS WE ACTUALLY NEED TO DO
 
 From here, let's do some checking, optimizing, and then save our work
 ```
