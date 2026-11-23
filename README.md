@@ -10,12 +10,14 @@ Make sure you have access to the Wilkinson servers. Links to information:
 >- https://brooks.wot.eecs.northwestern.edu:3300
 >- https://finagle.wot.eecs.northwestern.edu:3300
 >- https://hanlon.wot.eecs.northwestern.edu:3300
-
-
-You could use the FastX app (https://www.starnet.com/download-fastx-client/) instead of the browser. Or maybe even use ssh with X11 forwarding which has the added benefit of giving you native-looking windows that may or may not play nice with your desktop environment's window manager. Note that doing this on a Mac requires that you have XQuartz (https://www.xquartz.org/) installed and open.
-```
-ssh -X NETID@SERVER
-```
+>
+>
+>You could use the FastX app (https://www.starnet.com/download-fastx-client/) instead of the browser. 
+>
+>Or maybe even use ssh with X11 forwarding which has the added benefit of giving you native-looking windows that may or may not play nice with your desktop environment's window manager. Note that doing this on a Mac requires that you have XQuartz (https://www.xquartz.org/) installed and open. I have no idea what you'd have to do for windows. Probably just run this command in a WSL2 instance. Linux works just fine under both X11 and Wayland afaik. Regardless of your operating system's SSH solution, you'll need to run the below command to enter an SSH session with display server forwarding. You may have to sub `-X` for `-Y` in some instances.
+>```
+>ssh -X NETID@SERVER
+>```
 
 ### Directory layout
 By default, we have this directory structure
